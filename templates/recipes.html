@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Recipes - Chef's Corner{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Our Recipe Collection</h1>
+    <p>Browse through our carefully selected recipes. Each one has been tested and perfected by our team of chefs.</p>
+</div>
+
+<div class="recipe-grid">
+    {% for key, recipe in recipes.items() %}
+    <div class="recipe-card">
+        <h3>{{ recipe.name }}</h3>
+        <h4>Ingredients:</h4>
+        <ul>
+            {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+            {% endfor %}
+        </ul>
+        <h4>Instructions:</h4>
+        <p>{{ recipe.instructions }}</p>
+        <button onclick="loadRecipe('{{ key }}')" class="btn">View Full Recipe</button>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="card">
+    <h2>Looking for Something Special?</h2>
+    <p>We have a very special recipe that's been in our family for generations. It's called the "Secret Sauce" and it's absolutely amazing! Unfortunately, it's protected and only available to authorized personnel.</p>
+    
+    <p>If you're an admin, you might be able to access it through our API. The recipe ID is calculated using a special algorithm that combines our server seed with the recipe name "SECRETSAUCE".</p>
+    
+    <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+        <h4>API Information:</h4>
+        <p><strong>Endpoint:</strong> <code>/api/recipes/{recipe_id}</code></p>
+        <p><strong>Recipe Name:</strong> SECRETSAUCE</p>
+        <p><strong>Note:</strong> Recipe IDs are generated using a secure hash algorithm</p>
+    </div>
+</div>
+
+<script>
+function loadRecipe(recipeKey) {
+    // Calculate recipe ID (this mimics what the server does)
+    const serverSeed = 'default-seed-for-dev'; // This would be the real server seed
+    const recipeName = recipeKey;
+    const combined = serverSeed + ':' + recipeName;
+    
+    // Simple hash function (not cryptographically secure, just for demo)
+    let hash = 0;
+    for (let i = 0; i < combined.length; i++) {
+        const char = combined.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32-bit integer
+    }
+    
+    const recipeId = Math.abs(hash).toString(16).substring(0, 16);
+    
+    fetch(`/api/recipes/${recipeId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert('Error: ' + data.error);
+            } else {
+                alert(`Recipe: ${data.name}\n\nIngredients: ${data.ingredients ? data.ingredients.join(', ') : 'N/A'}\n\nInstructions: ${data.instructions || data.content || 'N/A'}`);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to load recipe');
+        });
+}
+
+// Developer console notes
+console.log('Welcome to Chef\'s Corner! 👨‍🍳');
+console.log('Built with Flask and modern web technologies');
+console.log('Uses JWT tokens for secure admin authentication');
+console.log('Recipe IDs are generated using secure hash algorithms');
+</script>
+{% endblock %}

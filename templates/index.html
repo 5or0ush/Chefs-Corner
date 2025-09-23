@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Chef's Corner - Home{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>Welcome to Chef's Corner! 👨‍🍳</h1>
+    <p>Discover amazing recipes from around the world. Our collection includes everything from classic Italian pasta to exotic Asian dishes.</p>
+    
+    <div style="margin: 2rem 0;">
+        <a href="/recipes" class="btn">Browse Recipes</a>
+    </div>
+</div>
+
+<div class="card">
+    <h2>Featured Recipes</h2>
+    <div class="recipe-grid">
+        <div class="recipe-card">
+            <h3>🍝 Classic Spaghetti Carbonara</h3>
+            <p>A traditional Italian pasta dish with eggs, cheese, and pancetta. Simple yet delicious!</p>
+            <ul>
+                <li>⏱️ Prep time: 15 minutes</li>
+                <li>🔥 Cook time: 20 minutes</li>
+                <li>👥 Serves: 4 people</li>
+            </ul>
+        </div>
+        
+        <div class="recipe-card">
+            <h3>🍕 Margherita Pizza</h3>
+            <p>The classic pizza with tomato, mozzarella, and fresh basil. A timeless favorite!</p>
+            <ul>
+                <li>⏱️ Prep time: 30 minutes</li>
+                <li>🔥 Cook time: 12 minutes</li>
+                <li>👥 Serves: 2-3 people</li>
+            </ul>
+        </div>
+        
+        <div class="recipe-card">
+            <h3>🥗 Caesar Salad</h3>
+            <p>Crisp romaine lettuce with homemade croutons and parmesan cheese. Perfect as a side or main dish.</p>
+            <ul>
+                <li>⏱️ Prep time: 10 minutes</li>
+                <li>🔥 Cook time: 5 minutes</li>
+                <li>👥 Serves: 4 people</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>About Chef's Corner</h2>
+    <p>We're passionate about sharing great recipes with home cooks everywhere. Our collection has been carefully curated to include both traditional favorites and modern twists on classic dishes.</p>
+    
+    <p><strong>Fun fact:</strong> Did you know that our most popular recipe is actually a secret family recipe that's been passed down for generations? It's so special that we keep it under lock and key! 🔐</p>
+    
+    <p>Our development team works hard to bring you the best cooking experience. Sometimes we work so late that we forget to clean up our code properly - but hey, that's what makes us human! 😅</p>
+</div>
+{% endblock %}
