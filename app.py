@@ -14,7 +14,7 @@ app.secret_key = 'dev-secret-key-change-in-production'  # TODO: Change this in p
 # Load environment variables
 SERVER_SEED = os.environ.get('SERVER_SEED', 'default-seed-for-dev')
 SECRET_RECIPE_CONTENT = os.environ.get('SECRET_RECIPE_CONTENT', 'Default secret recipe content')
-ENCRYPTION_KEY = os.environ.get('ENCRYPTION_KEY', 'default-encryption-key')
+ENCRYPTION_KEY = os.environ.get('ENCRYPTION_KEY', 'default-encryption-key') # TODO: I used weak-encryption-key-789 for now, will change later
 
 # Load RSA Keys from files
 def load_rsa_keys():
