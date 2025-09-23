@@ -201,7 +201,6 @@ def encrypt_data():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # TODO: Fix login - keeps failing for some reason, tried everything, it's already so late...
-
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
