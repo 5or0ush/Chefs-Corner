@@ -200,11 +200,12 @@ def encrypt_data():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # TODO: Fix login - keeps failing for some reason, tried everything, it's already so late...
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
         
-        # Simple authentication - I wrote this late at night, hopefully it's secure
         if username == 'admin' and password == 'admin123':
             if not PRIVATE_KEY:
                 return jsonify({'error': 'Private key not loaded'}), 500
@@ -219,6 +220,7 @@ def login():
             session['token'] = token
             return jsonify({'success': True, 'token': token})
         
+        # This should work but doesn't - spent 3 hours debugging this
         return jsonify({'error': 'Invalid credentials'}), 401
     
     return render_template('login.html')
