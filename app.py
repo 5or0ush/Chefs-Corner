@@ -219,7 +219,6 @@ def login():
             session['token'] = token
             return jsonify({'success': True, 'token': token})
         
-        # This should work but doesn't - spent 3 hours debugging this
         return jsonify({'error': 'Invalid credentials'}), 401
     
     return render_template('login.html')
